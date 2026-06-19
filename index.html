@@ -44,13 +44,22 @@
     "description": "Kantor Jasa Akuntan yang menyediakan layanan akuntansi, perpajakan, dan konsultasi bisnis untuk individu dan perusahaan di Indonesia.",
     "telephone": "+628121013550",
     "email": "pristinekristi@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Bizhome Residence Cluster Beryl R12/3, Sukamulya, Cikupa",
-      "addressLocality": "Tangerang",
-      "postalCode": "15710",
-      "addressCountry": "ID"
-    },
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "The Bellagio Lantai 2 No OL3-03, Jln Mega Kuningan Barat No 3, Kuningan, Kec. Setiabudi",
+        "addressLocality": "Jakarta Selatan",
+        "postalCode": "12950",
+        "addressCountry": "ID"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Bizhome, Beryl R12/3, Sukamulya, Cikupa",
+        "addressLocality": "Tangerang",
+        "postalCode": "15710",
+        "addressCountry": "ID"
+      }
+    ],
     "founder": {
       "@type": "Person",
       "name": "Katarina Kristi, S.E., M.Ak., CA., ACPA"
@@ -543,7 +552,8 @@
     .founder-card {
       position: relative;
       overflow: hidden;
-      min-height: 100%;
+      display: flex;
+      flex-direction: column;
       padding: 18px;
       border-radius: 34px;
       background: linear-gradient(135deg, var(--purple-deep), var(--purple));
@@ -551,10 +561,10 @@
       box-shadow: var(--shadow);
     }
     .founder-card .brand-pattern { opacity: .34; }
-    .founder-card img { position: relative; z-index: 2; width: 100%; max-height: 420px; aspect-ratio: .82/1; object-fit: cover; object-position: center top; border-radius: 26px; }
+    .founder-card img { position: relative; z-index: 2; flex: 1; min-height: 0; width: 100%; object-fit: cover; object-position: center top; border-radius: 26px; }
     .founder-name { position: relative; z-index: 2; margin-top: 16px; background: var(--gold); color: #170052; border-radius: 18px; padding: 14px 16px; font-weight: 950; }
     .founder-name span { display: block; margin-top: 3px; color: rgba(24,0,82,.68); font-size: 10.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .contact-card { padding: 28px; border: 1px solid var(--line); border-radius: 34px; background: #fbf9ff; box-shadow: 0 18px 48px rgba(47,0,148,.08); }
+    .contact-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: 34px; background: #fbf9ff; box-shadow: 0 18px 48px rgba(47,0,148,.08); }
     .contact-list { display: grid; gap: 14px; margin: 0 0 22px; }
     .contact-line {
       display: flex;
@@ -2041,7 +2051,10 @@
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></span><div class="contact-copy"><b>Email</b><span>pristinekristi@gmail.com</span></div>
               </a>
               <div class="contact-line">
-                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.33 7-11a7 7 0 0 0-14 0c0 5.67 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div class="contact-copy"><b>Address</b><span>Bizhome Residence Cluster Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span></div>
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.33 7-11a7 7 0 0 0-14 0c0 5.67 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div class="contact-copy"><b>Jakarta</b><span>The Bellagio Lantai 2 No OL3-03, Jln Mega Kuningan Barat No 3, Kuningan, Kec. Setiabudi, Jakarta Selatan 12950</span></div>
+              </div>
+              <div class="contact-line">
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.33 7-11a7 7 0 0 0-14 0c0 5.67 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div class="contact-copy"><b>Tangerang</b><span>Bizhome, Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span></div>
               </div>
             </div>
             <div class="legal-grid" aria-label="Legal and registration numbers">
@@ -2090,7 +2103,8 @@
         <div class="footer-col">
           <img class="footer-logo" src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png" alt="Pristine Accounting logo">
           <span>Accounting • Tax • Business Consulting</span>
-          <span>Bizhome Residence Cluster Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span>
+          <span>Jakarta: The Bellagio Lt.2 No OL3-03, Jln Mega Kuningan Barat No 3, Jakarta Selatan 12950</span>
+          <span>Tangerang: Bizhome, Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span>
         </div>
         <div class="footer-col">
           <h3>Navigate</h3>
