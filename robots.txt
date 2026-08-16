@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.pristinekja.com/sitemap.xml
+Sitemap: https://pristinekja.com/sitemap.xml
