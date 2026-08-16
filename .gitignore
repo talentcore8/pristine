@@ -1,1 +1,2 @@
-﻿assets/
+assets/*
+!assets/hero-consultant.webp
