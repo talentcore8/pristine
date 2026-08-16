@@ -1766,6 +1766,32 @@
       .hero-actions { display: flex !important; width: fit-content !important; max-width: 100% !important; }
       .hero-actions .btn { min-width: 0 !important; padding: 0 14px !important; }
     }
+
+    /* =========================================================
+       V12 - MOBILE STICKY HEADER FIX (Android compositing bug)
+       Root cause: V11 above re-enables `backdrop-filter: blur()`
+       on `.site-header` (position: sticky) with !important at
+       ALL breakpoints. Android Chrome/WebView is known to
+       mis-composite position:sticky elements that also use
+       backdrop-filter, causing header content (logo, hamburger)
+       to appear clipped/shifted upward after scrolling. This
+       block disables the blur only at mobile breakpoints, with
+       a solid-enough fallback background, so desktop is
+       untouched. Placed after V11 so its !important wins here.
+       ========================================================= */
+    @media (max-width: 940px) {
+      .site-header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(255,255,255,.98) !important;
+      }
+      .mobile-nav {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(255,255,255,.98) !important;
+      }
+      .hamburger { flex-shrink: 0; }
+    }
 </style>
 </head>
 <body>
