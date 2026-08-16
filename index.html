@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -246,6 +246,52 @@
     }
     @media (max-width: 940px) {
       .hamburger { display: flex; }
+    }
+
+    /* ── LANGUAGE SWITCH ── */
+    .lang-switch { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 800; letter-spacing: .04em; }
+    .lang-switch .lang-sep { color: var(--muted); opacity: .55; }
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px 2px;
+      margin: 0;
+      cursor: pointer;
+      color: var(--muted);
+      font: inherit;
+      font-weight: 800;
+      letter-spacing: .04em;
+      border-radius: 6px;
+      transition: color .2s ease;
+    }
+    .lang-flag {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex: 0 0 15px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.12);
+    }
+    .lang-flag svg { display: block; width: 100%; height: 100%; }
+    .lang-btn:hover { color: var(--purple); }
+    .lang-btn[aria-pressed="true"] {
+      color: var(--purple);
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+    .lang-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+    .lang-switch-mobile {
+      width: 100%;
+      justify-content: center;
+      margin: 8px 0 2px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
     }
     .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand-mark {
@@ -1059,6 +1105,7 @@
     @media (max-width: 940px) {
       .nav { min-height: 64px; }
       .nav-links { display: none; }
+      .lang-switch-desktop { display: none; }
       .brand-mark, .brand-logo { width: 178px; max-width: 46vw; }
       .hero-grid, .about-wrap, .vm-grid, .credentials-wrap, .contact-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 26px; }
@@ -1724,18 +1771,23 @@
 <body>
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand-mark" href="#top" aria-label="Pristine Accounting Home">
-        <img class="brand-logo" src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png" alt="Pristine Accounting logo">
+      <a class="brand-mark" href="#top" aria-label="Pristine Accounting Home" data-i18n-aria-label="nav.ariaHome">
+        <img class="brand-logo" src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png" alt="Logo Pristine Accounting" data-i18n-alt="brand.logoAlt">
       </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+      <nav class="nav-links" aria-label="Primary navigation" data-i18n-aria-label="nav.ariaPrimary">
+        <a href="#about" data-i18n="nav.about">Tentang Kami</a>
+        <a href="#services" data-i18n="nav.services">Layanan</a>
+        <a href="#credentials" data-i18n="nav.credentials">Kredensial</a>
+        <a href="#clients" data-i18n="nav.clients">Klien</a>
+        <a href="#contact" data-i18n="nav.contact">Kontak</a>
       </nav>
-      <a class="btn btn-primary" href="#contact">Get Consultation</a>
-      <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation" aria-expanded="false">
+      <div class="lang-switch lang-switch-desktop" role="group" aria-label="Pilihan bahasa" data-i18n-aria-label="langSwitch.groupAriaLabel">
+        <button type="button" class="lang-btn" data-lang="id" aria-pressed="true" aria-label="Ganti ke Bahasa Indonesia" data-i18n-aria-label="langSwitch.idAriaLabel"><span class="lang-flag" aria-hidden="true"><svg viewBox="0 0 60 60"><rect width="60" height="30" fill="#CE1126"/><rect y="30" width="60" height="30" fill="#fff"/></svg></span>ID</button>
+        <span class="lang-sep" aria-hidden="true">|</span>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="Ganti ke Bahasa Inggris" data-i18n-aria-label="langSwitch.enAriaLabel"><span class="lang-flag" aria-hidden="true"><svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#00247D"/><polygon points="0,0 8,0 60,52 60,60 52,60 0,8" fill="#fff"/><polygon points="60,0 52,0 0,52 0,60 8,60 60,8" fill="#fff"/><polygon points="0,0 5,0 60,55 60,60 55,60 0,5" fill="#CF142B"/><polygon points="60,0 55,0 0,55 0,60 5,60 60,5" fill="#CF142B"/><rect x="24" width="12" height="60" fill="#fff"/><rect y="24" width="60" height="12" fill="#fff"/><rect x="27" width="6" height="60" fill="#CF142B"/><rect y="27" width="60" height="6" fill="#CF142B"/></svg></span>EN</button>
+      </div>
+      <a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Konsultasi Sekarang</a>
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation" aria-expanded="false" data-i18n-aria-label="nav.ariaToggle">
         <span></span>
         <span></span>
         <span></span>
@@ -1743,12 +1795,18 @@
     </div>
     <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
       <div class="mobile-nav-inner">
-        <a href="#about"       onclick="closeMobileNav()">About</a>
-        <a href="#services"    onclick="closeMobileNav()">Services</a>
-        <a href="#credentials" onclick="closeMobileNav()">Credentials</a>
-        <a href="#clients"     onclick="closeMobileNav()">Clients</a>
-        <a href="#contact"     onclick="closeMobileNav()">Contact</a>
-        <a href="#contact" class="mobile-nav-cta" onclick="closeMobileNav()">Get Consultation</a>      </div>
+        <a href="#about"       onclick="closeMobileNav()" data-i18n="nav.about">Tentang Kami</a>
+        <a href="#services"    onclick="closeMobileNav()" data-i18n="nav.services">Layanan</a>
+        <a href="#credentials" onclick="closeMobileNav()" data-i18n="nav.credentials">Kredensial</a>
+        <a href="#clients"     onclick="closeMobileNav()" data-i18n="nav.clients">Klien</a>
+        <a href="#contact"     onclick="closeMobileNav()" data-i18n="nav.contact">Kontak</a>
+        <div class="lang-switch lang-switch-mobile" role="group" aria-label="Pilihan bahasa" data-i18n-aria-label="langSwitch.groupAriaLabel">
+          <button type="button" class="lang-btn" data-lang="id" aria-pressed="true" aria-label="Ganti ke Bahasa Indonesia" data-i18n-aria-label="langSwitch.idAriaLabel"><span class="lang-flag" aria-hidden="true"><svg viewBox="0 0 60 60"><rect width="60" height="30" fill="#CE1126"/><rect y="30" width="60" height="30" fill="#fff"/></svg></span>ID</button>
+          <span class="lang-sep" aria-hidden="true">|</span>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="Ganti ke Bahasa Inggris" data-i18n-aria-label="langSwitch.enAriaLabel"><span class="lang-flag" aria-hidden="true"><svg viewBox="0 0 60 60"><rect width="60" height="60" fill="#00247D"/><polygon points="0,0 8,0 60,52 60,60 52,60 0,8" fill="#fff"/><polygon points="60,0 52,0 0,52 0,60 8,60 60,8" fill="#fff"/><polygon points="0,0 5,0 60,55 60,60 55,60 0,5" fill="#CF142B"/><polygon points="60,0 55,0 0,55 0,60 5,60 60,5" fill="#CF142B"/><rect x="24" width="12" height="60" fill="#fff"/><rect y="24" width="60" height="12" fill="#fff"/><rect x="27" width="6" height="60" fill="#CF142B"/><rect y="27" width="60" height="6" fill="#CF142B"/></svg></span>EN</button>
+        </div>
+        <a href="#contact" class="mobile-nav-cta" onclick="closeMobileNav()" data-i18n="nav.cta">Konsultasi Sekarang</a>
+      </div>
     </div>
   </header>
 
@@ -1757,21 +1815,21 @@
       <div class="brand-pattern"></div>
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Accounting • Tax • Business Consulting</div>
-          <h1>Reliable Accounting<br>for Smarter Decisions</h1>
-          <p>Keep your finances accurate, organized, and ready to support every business move.</p>
+          <div class="eyebrow" data-i18n="hero.eyebrow">Akuntansi • Perpajakan • Konsultasi Bisnis</div>
+          <h1><span data-i18n="hero.h1Line1">Akuntansi Andal</span><span data-i18n="hero.h1Line2">untuk Keputusan yang Lebih Tepat</span></h1>
+          <p data-i18n="hero.lead">Jaga keuangan Anda tetap akurat, tertata, dan siap mendukung setiap langkah bisnis.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#services">Explore Services</a>
-            <a class="btn btn-outline" href="#credentials">View Credentials</a>
+            <a class="btn btn-primary" href="#services" data-i18n="hero.ctaPrimary">Lihat Layanan</a>
+            <a class="btn btn-outline" href="#credentials" data-i18n="hero.ctaOutline">Lihat Kredensial</a>
           </div>
         </div>
         <div class="hero-card">
           <div class="hero-media-card">
             <div class="brand-pattern"></div>
-            <img src="assets/hero-consultant.webp" alt="Business consultant meeting with clients" width="1536" height="1024" fetchpriority="high" decoding="async">
-            <div class="hero-stat" aria-label="Service highlights">
-              <div><b>Accurate</b><span>Clear financial records</span></div>
-              <div><b>Organized</b><span>Ready for every report</span></div>
+            <img src="assets/hero-consultant.webp" alt="Konsultan bisnis berdiskusi dengan klien" data-i18n-alt="hero.imageAlt" width="1536" height="1024" fetchpriority="high" decoding="async">
+            <div class="hero-stat" aria-label="Keunggulan layanan" data-i18n-aria-label="hero.statsAriaLabel">
+              <div><b data-i18n="hero.stat1Title">Akurat</b><span data-i18n="hero.stat1Desc">Catatan keuangan yang jelas</span></div>
+              <div><b data-i18n="hero.stat2Title">Tertata</b><span data-i18n="hero.stat2Desc">Siap untuk setiap pelaporan</span></div>
             </div>
           </div>
         </div>
@@ -1781,17 +1839,17 @@
     <section id="about">
       <div class="shell about-wrap">
         <div class="photo-shell">
-          <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409594/about-consulting_ux12ce.png" alt="Consulting team reviewing business reports">
+          <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409594/about-consulting_ux12ce.png" alt="Tim konsultan meninjau laporan bisnis" data-i18n-alt="about.imageAlt">
         </div>
         <div>
-          <div class="section-kicker">About Us</div>
-          <h2>Trusted accounting service with clear, practical support.</h2>
-          <p class="section-lead">Pristine Accounting is a trusted and reliable accounting firm that provides accounting, tax, business, and management services for individuals and companies.</p>
+          <div class="section-kicker" data-i18n="about.kicker">Tentang Kami</div>
+          <h2 data-i18n="about.h2">Layanan akuntansi tepercaya dengan dukungan yang jelas dan praktis.</h2>
+          <p class="section-lead" data-i18n="about.lead">Pristine Accounting adalah kantor jasa akuntansi tepercaya yang menyediakan layanan akuntansi, perpajakan, bisnis, dan manajemen untuk individu maupun perusahaan.</p>
           <div class="mini-grid">
-            <div class="mini-card"><b>Honest & Trustworthy</b><span>Service with integrity and responsible communication.</span></div>
-            <div class="mini-card"><b>Client Focused</b><span>Work closely with clients and teams to solve real business needs.</span></div>
-            <div class="mini-card"><b>Up to Date</b><span>Aligned with current information, technology, and regulations.</span></div>
-            <div class="mini-card"><b>On Time</b><span>Disciplined service delivery for every assignment.</span></div>
+            <div class="mini-card"><b data-i18n="about.card1Title">Jujur & Tepercaya</b><span data-i18n="about.card1Desc">Layanan dengan integritas dan komunikasi yang bertanggung jawab.</span></div>
+            <div class="mini-card"><b data-i18n="about.card2Title">Berorientasi Klien</b><span data-i18n="about.card2Desc">Bekerja sama erat dengan klien dan tim untuk menjawab kebutuhan bisnis yang nyata.</span></div>
+            <div class="mini-card"><b data-i18n="about.card3Title">Selalu Terkini</b><span data-i18n="about.card3Desc">Mengikuti perkembangan informasi, teknologi, dan regulasi terkini.</span></div>
+            <div class="mini-card"><b data-i18n="about.card4Title">Tepat Waktu</b><span data-i18n="about.card4Desc">Disiplin dalam menyelesaikan setiap penugasan tepat waktu.</span></div>
           </div>
         </div>
       </div>
@@ -1828,18 +1886,18 @@
       </svg>
       <div class="shell vm-grid">
         <div class="vm-card purple">
-          <h3>Vision</h3>
-          <p>To become a trusted accounting partner that delivers reliable, efficient, and value-driven financial solutions in Indonesia.</p>
+          <h3 data-i18n="vision.title">Visi</h3>
+          <p data-i18n="vision.text">Menjadi mitra akuntansi tepercaya yang menghadirkan solusi keuangan yang andal, efisien, dan bernilai tambah di Indonesia.</p>
         </div>
         <div class="vm-card">
-          <h3>Mission</h3>
+          <h3 data-i18n="mission.title">Misi</h3>
           <div class="mission-list">
-            <span>Uphold professional ethics</span>
-            <span>Work with integrity</span>
-            <span>Build client trust</span>
-            <span>Communicate clearly</span>
-            <span>Stay updated with technology</span>
-            <span>Deliver assignments on time</span>
+            <span data-i18n="mission.item1">Menjunjung tinggi etika profesi</span>
+            <span data-i18n="mission.item2">Bekerja dengan integritas</span>
+            <span data-i18n="mission.item3">Membangun kepercayaan klien</span>
+            <span data-i18n="mission.item4">Berkomunikasi secara jelas</span>
+            <span data-i18n="mission.item5">Mengikuti perkembangan teknologi</span>
+            <span data-i18n="mission.item6">Menyelesaikan penugasan tepat waktu</span>
           </div>
         </div>
       </div>
@@ -1849,45 +1907,45 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Our Services</div>
-            <h2>3 Core Services for<br>Financial Clarity</h2>
+            <div class="section-kicker" data-i18n="services.kicker">Layanan Kami</div>
+            <h2><span data-i18n="services.h2Line1">3 Layanan Utama untuk</span><br><span data-i18n="services.h2Line2">Kejelasan Finansial</span></h2>
           </div>
-          <p class="section-lead">From bookkeeping to tax reporting and business management consultation, Pristine Accounting helps companies keep their financial operations clean and measurable.</p>
+          <p class="section-lead" data-i18n="services.lead">Mulai dari pembukuan hingga pelaporan pajak dan konsultasi manajemen bisnis, Pristine Accounting membantu perusahaan menjaga operasional keuangan tetap rapi dan terukur.</p>
         </div>
         <div class="service-grid">
           <article class="service-card">
             <div class="service-number">01</div>
-            <h3>Accounting Services</h3>
+            <h3 data-i18n="services.card1Title">Layanan Akuntansi</h3>
             <ul>
-              <li>Financial reports and analysis</li>
-              <li>General bookkeeping</li>
-              <li>Daily journal recording</li>
-              <li>Bank reconciliation</li>
-              <li>Payroll processing</li>
-              <li>AR and AP support</li>
+              <li data-i18n="services.card1Item1">Laporan dan analisis keuangan</li>
+              <li data-i18n="services.card1Item2">Pembukuan umum</li>
+              <li data-i18n="services.card1Item3">Pencatatan jurnal harian</li>
+              <li data-i18n="services.card1Item4">Rekonsiliasi bank</li>
+              <li data-i18n="services.card1Item5">Pengelolaan penggajian</li>
+              <li data-i18n="services.card1Item6">Dukungan piutang dan utang usaha</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-number">02</div>
-            <h3>Tax Services</h3>
+            <h3 data-i18n="services.card2Title">Layanan Perpajakan</h3>
             <ul>
-              <li>PPh 21, 23, 4(2), corporate, and foreign taxpayer calculation</li>
-              <li>Tax reporting services</li>
-              <li>Corporate income tax services</li>
-              <li>Tax dispute assistance</li>
-              <li>SP2DK consultation</li>
-              <li>Transfer pricing documentation</li>
+              <li data-i18n="services.card2Item1">Perhitungan PPh 21, 23, 4(2), badan, dan wajib pajak luar negeri</li>
+              <li data-i18n="services.card2Item2">Jasa pelaporan pajak</li>
+              <li data-i18n="services.card2Item3">Jasa PPh badan</li>
+              <li data-i18n="services.card2Item4">Pendampingan sengketa pajak</li>
+              <li data-i18n="services.card2Item5">Konsultasi SP2DK</li>
+              <li data-i18n="services.card2Item6">Dokumentasi transfer pricing</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-number">03</div>
-            <h3>Business & Management Consulting</h3>
+            <h3 data-i18n="services.card3Title">Konsultasi Bisnis & Manajemen</h3>
             <ul>
-              <li>Risk management analysis</li>
-              <li>Budgeting and operational reports</li>
-              <li>Standard Operating Procedure support</li>
-              <li>Product strategy</li>
-              <li>Business process engineering</li>
+              <li data-i18n="services.card3Item1">Analisis manajemen risiko</li>
+              <li data-i18n="services.card3Item2">Penganggaran dan laporan operasional</li>
+              <li data-i18n="services.card3Item3">Penyusunan Standard Operating Procedure (SOP)</li>
+              <li data-i18n="services.card3Item4">Strategi produk</li>
+              <li data-i18n="services.card3Item5">Perancangan proses bisnis</li>
             </ul>
           </article>
         </div>
@@ -1897,14 +1955,14 @@
     <section id="credentials">
       <div class="shell credentials-wrap">
         <div class="cert-photo">
-          <div class="cert-grid" aria-label="Professional certificates">
+          <div class="cert-grid" aria-label="Sertifikat profesional" data-i18n-aria-label="credentials.certGridAriaLabel">
 
             <!-- RNA — JPEG tampil langsung sebagai gambar -->
             <div class="cert-card cert-card-span2" onclick="openCert('https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409614/cert-rna_sfmz4o.jpg','img','Register Negara Akuntan')">
               <div class="cert-card-img">
                 <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409614/cert-rna_sfmz4o.jpg" alt="Sertifikat Register Negara Akuntan" loading="lazy">
               </div>
-              <div class="cert-card-overlay"><span>🔍 Lihat Sertifikat</span></div>
+              <div class="cert-card-overlay"><span data-i18n="credentials.viewCert">🔍 Lihat Sertifikat</span></div>
               <div class="cert-card-label">Register Negara Akuntan — RNA</div>
             </div>
 
@@ -1913,7 +1971,7 @@
               <div class="cert-card-img">
                 <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409620/cert-ab_dxmnnz.jpg" alt="Izin Akuntan Berpraktik" loading="lazy">
               </div>
-              <div class="cert-card-overlay"><span>🔍 Lihat Sertifikat</span></div>
+              <div class="cert-card-overlay"><span data-i18n="credentials.viewCert">🔍 Lihat Sertifikat</span></div>
               <div class="cert-card-label">Akuntan Berpraktik — AB</div>
             </div>
 
@@ -1922,7 +1980,7 @@
               <div class="cert-card-img">
                 <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409617/cert-kja_yx4gbf.jpg" alt="Izin Kantor Jasa Akuntan" loading="lazy">
               </div>
-              <div class="cert-card-overlay"><span>🔍 Lihat Sertifikat</span></div>
+              <div class="cert-card-overlay"><span data-i18n="credentials.viewCert">🔍 Lihat Sertifikat</span></div>
               <div class="cert-card-label">Kantor Jasa Akuntan — KJA</div>
             </div>
 
@@ -1931,7 +1989,7 @@
               <div class="cert-card-img">
                 <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409621/cert-aseancpa_rmgkkv.jpg" alt="Sertifikat ASEAN CPA" loading="lazy">
               </div>
-              <div class="cert-card-overlay"><span>🔍 Lihat Sertifikat</span></div>
+              <div class="cert-card-overlay"><span data-i18n="credentials.viewCert">🔍 Lihat Sertifikat</span></div>
               <div class="cert-card-label">ASEAN CPA</div>
             </div>
 
@@ -1940,17 +1998,17 @@
               <div class="cert-card-img">
                 <img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409618/cert-acpa_g7mxyw.jpg" alt="Sertifikat ACPA" loading="lazy">
               </div>
-              <div class="cert-card-overlay"><span>🔍 Lihat Sertifikat</span></div>
+              <div class="cert-card-overlay"><span data-i18n="credentials.viewCert">🔍 Lihat Sertifikat</span></div>
               <div class="cert-card-label">ACPA</div>
             </div>
 
           </div>
         </div>
         <div>
-          <div class="section-kicker">Certificates</div>
-          <h2>Professional credentials that build trust.</h2>
-          <p class="section-lead">The company profile highlights proof of practice and professional registrations, including AB, KJA, ASEAN CPA, RNA, and ACPA credentials.</p>
-          <div class="credential-list" aria-label="Professional credentials">
+          <div class="section-kicker" data-i18n="credentials.kicker">Sertifikat</div>
+          <h2 data-i18n="credentials.h2">Kredensial profesional yang membangun kepercayaan.</h2>
+          <p class="section-lead" data-i18n="credentials.lead">Profil perusahaan menampilkan bukti izin praktik dan registrasi profesional, termasuk kredensial AB, KJA, ASEAN CPA, RNA, dan ACPA.</p>
+          <div class="credential-list" aria-label="Kredensial profesional" data-i18n-aria-label="credentials.listAriaLabel">
             <div class="credential-item"><b>Akuntan Berpraktik</b><span class="credential-tag">AB</span></div>
             <div class="credential-item"><b>Kantor Jasa Akuntan</b><span class="credential-tag">KJA</span></div>
             <div class="credential-item"><b>ASEAN Chartered Professional Accountant</b><span class="credential-tag">ASEAN CPA</span></div>
@@ -1993,14 +2051,14 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Clients</div>
-            <h2>Companies That Trusted Pristine Accounting</h2>
+            <div class="section-kicker" data-i18n="clients.kicker">Klien</div>
+            <h2 data-i18n="clients.h2">Perusahaan yang Mempercayai Pristine Accounting</h2>
           </div>
         </div>
         <div class="client-grid">
-          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409588/clients-1_gjajnx.webp" alt="Selected client logos group 1"></div>
-          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409594/clients-2_vnopoi.webp" alt="Selected client logos group 2"></div>
-          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409585/clients-3_xyjjow.webp" alt="Selected client logos group 3"></div>
+          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409588/clients-1_gjajnx.webp" alt="Kumpulan logo klien 1" data-i18n-alt="clients.alt1"></div>
+          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409594/clients-2_vnopoi.webp" alt="Kumpulan logo klien 2" data-i18n-alt="clients.alt2"></div>
+          <div class="client-card"><img src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409585/clients-3_xyjjow.webp" alt="Kumpulan logo klien 3" data-i18n-alt="clients.alt3"></div>
         </div>
       </div>
     </section>
@@ -2009,9 +2067,9 @@
     <section id="testimonials" class="testimonials">
       <div class="shell">
         <div class="section-head" style="display:block; text-align:center; max-width:780px; margin:0 auto 36px;">
-          <div class="section-kicker" style="justify-content:center;">Testimonials</div>
-          <h2>What Our Clients Say</h2>
-          <p class="section-lead" style="margin-left:auto;margin-right:auto;">Real stories from businesses that have trusted Pristine Accounting to manage their financial operations.</p>
+          <div class="section-kicker" style="justify-content:center;" data-i18n="testimonials.kicker">Testimoni</div>
+          <h2 data-i18n="testimonials.h2">Apa Kata Klien Kami</h2>
+          <p class="section-lead" style="margin-left:auto;margin-right:auto;" data-i18n="testimonials.lead">Kisah nyata dari para pelaku bisnis yang mempercayakan pengelolaan keuangan mereka kepada Pristine Accounting.</p>
         </div>
         <div class="testi-grid">
 
@@ -2025,10 +2083,10 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Contact</div>
-            <h2>Build a Stronger Financial Foundation</h2>
+            <div class="section-kicker" data-i18n="contact.kicker">Kontak</div>
+            <h2 data-i18n="contact.h2">Bangun Fondasi Keuangan yang Lebih Kuat</h2>
           </div>
-          <p class="section-lead">Gain clear financial insights, streamline your accounting, and build a stronger foundation for growth. Try us today and experience the difference.</p>
+          <p class="section-lead" data-i18n="contact.lead">Dapatkan wawasan keuangan yang jelas, sederhanakan proses akuntansi Anda, dan bangun fondasi yang lebih kuat untuk pertumbuhan. Coba layanan kami hari ini dan rasakan perbedaannya.</p>
         </div>
         <div class="contact-grid">
           <div class="founder-card">
@@ -2039,10 +2097,10 @@
           <div class="contact-card">
             <div class="contact-list">
               <a class="contact-line" href="https://wa.me/628121013550" target="_blank" rel="noopener">
-                <span class="contact-icon" aria-hidden="true"><svg class="filled" viewBox="0 0 32 32"><path d="M16.04 3.2C9.12 3.2 3.5 8.76 3.5 15.6c0 2.18.58 4.28 1.67 6.13L3.4 28.8l7.25-1.73a12.6 12.6 0 0 0 5.39 1.2c6.92 0 12.55-5.56 12.55-12.4S22.96 3.2 16.04 3.2Zm0 22.72c-1.77 0-3.5-.46-5.02-1.34l-.36-.2-4.3 1.03 1.05-4.18-.23-.38a10.06 10.06 0 0 1-1.36-5.04c0-5.55 4.58-10.07 10.22-10.07 5.63 0 10.21 4.52 10.21 10.07 0 5.56-4.58 10.11-10.21 10.11Zm5.68-7.5c-.31-.16-1.84-.9-2.12-1-.28-.1-.49-.16-.7.15-.2.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.16-1.3-.47-2.48-1.52-.92-.81-1.54-1.8-1.72-2.11-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.66-.96-2.27-.25-.6-.5-.51-.7-.52h-.6c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.55s1.1 2.96 1.26 3.16c.16.2 2.17 3.28 5.27 4.6.74.31 1.31.5 1.76.64.74.23 1.42.2 1.95.12.6-.09 1.84-.74 2.1-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.6-.36Z"/></svg></span><div class="contact-copy"><b>Phone / WhatsApp</b><span>0812-101-3550</span></div>
+                <span class="contact-icon" aria-hidden="true"><svg class="filled" viewBox="0 0 32 32"><path d="M16.04 3.2C9.12 3.2 3.5 8.76 3.5 15.6c0 2.18.58 4.28 1.67 6.13L3.4 28.8l7.25-1.73a12.6 12.6 0 0 0 5.39 1.2c6.92 0 12.55-5.56 12.55-12.4S22.96 3.2 16.04 3.2Zm0 22.72c-1.77 0-3.5-.46-5.02-1.34l-.36-.2-4.3 1.03 1.05-4.18-.23-.38a10.06 10.06 0 0 1-1.36-5.04c0-5.55 4.58-10.07 10.22-10.07 5.63 0 10.21 4.52 10.21 10.07 0 5.56-4.58 10.11-10.21 10.11Zm5.68-7.5c-.31-.16-1.84-.9-2.12-1-.28-.1-.49-.16-.7.15-.2.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.16-1.3-.47-2.48-1.52-.92-.81-1.54-1.8-1.72-2.11-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.66-.96-2.27-.25-.6-.5-.51-.7-.52h-.6c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.55s1.1 2.96 1.26 3.16c.16.2 2.17 3.28 5.27 4.6.74.31 1.31.5 1.76.64.74.23 1.42.2 1.95.12.6-.09 1.84-.74 2.1-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.6-.36Z"/></svg></span><div class="contact-copy"><b data-i18n="contact.phoneLabel">Telepon / WhatsApp</b><span>0812-101-3550</span></div>
               </a>
               <a class="contact-line" href="mailto:pristinekristi@gmail.com">
-                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></span><div class="contact-copy"><b>Email</b><span>pristinekristi@gmail.com</span></div>
+                <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></span><div class="contact-copy"><b data-i18n="contact.emailLabel">Email</b><span>pristinekristi@gmail.com</span></div>
               </a>
               <div class="contact-line">
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.33 7-11a7 7 0 0 0-14 0c0 5.67 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div class="contact-copy"><b>Jakarta</b><span>Bellagio Boutique Mall, Jl. Mega Kuningan Barat No.3 Lantai 2 No OL3-03, RT.5/RW.2, Kuningan, Kuningan Timur, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950</span></div>
@@ -2051,7 +2109,7 @@
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.33 7-11a7 7 0 0 0-14 0c0 5.67 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg></span><div class="contact-copy"><b>Tangerang</b><span>Bizhome, Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span></div>
               </div>
             </div>
-            <div class="legal-grid" aria-label="Legal and registration numbers">
+            <div class="legal-grid" aria-label="Nomor izin dan registrasi" data-i18n-aria-label="contact.legalAriaLabel">
               <div class="legal-box"><b>CA</b><span>11.D47843</span></div>
               <div class="legal-box"><b>RNA</b><span>2262</span></div>
               <div class="legal-box"><b>AB</b><span>AB 1039</span></div>
@@ -2095,30 +2153,30 @@
     <div class="shell">
       <div class="footer-grid">
         <div class="footer-col">
-          <img class="footer-logo" src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png" alt="Pristine Accounting logo">
-          <span>Accounting • Tax • Business Consulting</span>
+          <img class="footer-logo" src="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png" alt="Logo Pristine Accounting" data-i18n-alt="brand.logoAlt">
+          <span data-i18n="hero.eyebrow">Akuntansi • Perpajakan • Konsultasi Bisnis</span>
           <span>Jakarta: Bellagio Boutique Mall, Jl. Mega Kuningan Barat No.3 Lantai 2 No OL3-03, RT.5/RW.2, Kuningan, Kuningan Timur, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950</span>
           <span>Tangerang: Bizhome, Beryl R12/3, Sukamulya, Cikupa, Tangerang 15710</span>
         </div>
         <div class="footer-col">
-          <h3>Navigate</h3>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#credentials">Credentials</a>
-          <a href="#clients">Clients</a>
-          <a href="#contact">Contact</a>
+          <h3 data-i18n="footer.navTitle">Navigasi</h3>
+          <a href="#about" data-i18n="nav.about">Tentang Kami</a>
+          <a href="#services" data-i18n="nav.services">Layanan</a>
+          <a href="#credentials" data-i18n="nav.credentials">Kredensial</a>
+          <a href="#clients" data-i18n="nav.clients">Klien</a>
+          <a href="#contact" data-i18n="nav.contact">Kontak</a>
         </div>
         <div class="footer-col">
-          <h3>Services</h3>
-          <a href="#services">Accounting Services</a>
-          <a href="#services">Tax Services</a>
-          <a href="#services">Business Consulting</a>
+          <h3 data-i18n="nav.services">Layanan</h3>
+          <a href="#services" data-i18n="services.card1Title">Layanan Akuntansi</a>
+          <a href="#services" data-i18n="services.card2Title">Layanan Perpajakan</a>
+          <a href="#services" data-i18n="footer.businessConsulting">Konsultasi Bisnis</a>
         </div>
         <div class="footer-col">
-          <h3>Contact</h3>
+          <h3 data-i18n="nav.contact">Kontak</h3>
           <a href="https://linktr.ee/PristineAccounting" target="_blank" rel="noopener">Linktree</a>
           <a href="https://wa.me/628121013550" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:pristinekristi@gmail.com">Email</a>
+          <a href="mailto:pristinekristi@gmail.com" data-i18n="contact.emailLabel">Email</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -2128,13 +2186,13 @@
     </div>
   </footer>
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/628121013550?text=Halo%20Pristine%20Accounting%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" id="wa-float" aria-label="Chat via WhatsApp">
+  <a href="https://wa.me/628121013550?text=Halo%20Pristine%20Accounting%2C%20saya%20ingin%20konsultasi." target="_blank" rel="noopener" id="wa-float" aria-label="Chat melalui WhatsApp" data-i18n-aria-label="wa.ariaLabel">
     <span class="wa-ring"></span>
     <span class="wa-ring wa-ring-2"></span>
     <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
       <path d="M16.04 3.2C9.12 3.2 3.5 8.76 3.5 15.6c0 2.18.58 4.28 1.67 6.13L3.4 28.8l7.25-1.73a12.6 12.6 0 0 0 5.39 1.2c6.92 0 12.55-5.56 12.55-12.4S22.96 3.2 16.04 3.2Zm0 22.72c-1.77 0-3.5-.46-5.02-1.34l-.36-.2-4.3 1.03 1.05-4.18-.23-.38a10.06 10.06 0 0 1-1.36-5.04c0-5.55 4.58-10.07 10.22-10.07 5.63 0 10.21 4.52 10.21 10.07 0 5.56-4.58 10.11-10.21 10.11Zm5.68-7.5c-.31-.16-1.84-.9-2.12-1-.28-.1-.49-.16-.7.15-.2.31-.8 1-.98 1.2-.18.2-.36.23-.67.08-.31-.16-1.3-.47-2.48-1.52-.92-.81-1.54-1.8-1.72-2.11-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.66-.96-2.27-.25-.6-.5-.51-.7-.52h-.6c-.2 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.55s1.1 2.96 1.26 3.16c.16.2 2.17 3.28 5.27 4.6.74.31 1.31.5 1.76.64.74.23 1.42.2 1.95.12.6-.09 1.84-.74 2.1-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.6-.36Z"/>
     </svg>
-    <span class="wa-label">Contact Us</span>
+    <span class="wa-label" data-i18n="wa.ctaLabel">Hubungi Kami</span>
   </a>
   <style>
     @keyframes waPulse {
@@ -2200,7 +2258,7 @@
   <!-- Video Lightbox -->
   <div id="video-lightbox" onclick="closeVideoLB()">
     <div class="video-lb-inner" onclick="event.stopPropagation()">
-      <button class="video-lb-close" onclick="closeVideoLB()" aria-label="Tutup">✕</button>
+      <button class="video-lb-close" onclick="closeVideoLB()" aria-label="Tutup" data-i18n-aria-label="certLb.closeAriaLabel">✕</button>
     </div>
   </div>
 
@@ -2208,21 +2266,24 @@
   <div id="cert-lightbox" onclick="closeCert()">
     <div class="cert-lb-inner" onclick="event.stopPropagation()">
       <div class="cert-lb-header">
-        <h4 id="cert-lb-title">Sertifikat</h4>
+        <h4 id="cert-lb-title" data-i18n="certLb.defaultTitle">Sertifikat</h4>
         <div class="cert-lb-controls">
-          <button class="cert-lb-btn" onclick="zoomCert(-1)" title="Zoom Out">−</button>
+          <button class="cert-lb-btn" onclick="zoomCert(-1)" title="Perkecil" data-i18n-title="certLb.zoomOutTitle">−</button>
           <div class="cert-zoom-level" id="cert-zoom-level">100%</div>
-          <button class="cert-lb-btn" onclick="zoomCert(1)" title="Zoom In">+</button>
-          <button class="cert-lb-btn" onclick="resetCertZoom()" title="Reset">⊡</button>
-          <button class="cert-lb-close" onclick="closeCert()" aria-label="Tutup">✕</button>
+          <button class="cert-lb-btn" onclick="zoomCert(1)" title="Perbesar" data-i18n-title="certLb.zoomInTitle">+</button>
+          <button class="cert-lb-btn" onclick="resetCertZoom()" title="Atur Ulang" data-i18n-title="certLb.resetTitle">⊡</button>
+          <button class="cert-lb-close" onclick="closeCert()" aria-label="Tutup" data-i18n-aria-label="certLb.closeAriaLabel">✕</button>
         </div>
       </div>
       <div class="cert-lb-body" id="cert-lb-body">
-        <div class="cert-lb-hint" id="cert-lb-hint">Scroll untuk zoom · Drag untuk geser · Klik 2x untuk reset</div>
+        <div class="cert-lb-hint" id="cert-lb-hint" data-i18n="certLb.hint">Scroll untuk zoom · Geser untuk memindah · Klik dua kali untuk mengatur ulang</div>
       </div>
     </div>
   </div>
 
+  <!-- i18n loads here (before the block below that renders testimonial
+       cards) so window.i18n.t already exists on their first render. -->
+  <script src="js/i18n.js"></script>
   <script>
   /* ╔══════════════════════════════════════════════════════╗
      ║   GANTI LINK VIDEO YOUTUBE DI SINI                  ║
@@ -2233,20 +2294,21 @@
   const TESTIMONI_VIDEOS = [
     {
       link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 1
-      judul: 'Client Testimonial',
-      sub:   'Financial Management Services'
+      judul: 'testi.title',
+      sub:   'testi.sub1'
     },
     {
       link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 2
-      judul: 'Client Testimonial',
-      sub:   'Tax & Accounting Services'
+      judul: 'testi.title',
+      sub:   'testi.sub2'
     },
     {
       link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 3
-      judul: 'Client Testimonial',
-      sub:   'Business Consulting Services'
+      judul: 'testi.title',
+      sub:   'testi.sub3'
     },
   ];
+  /* judul & sub di atas adalah i18n key (lihat js/i18n.js) — hanya "link" yang perlu diganti untuk mengganti video */
 
   /* Ekstrak YouTube ID dari berbagai format link */
   function getYouTubeID(url) {
@@ -2260,38 +2322,89 @@
     return null;
   }
 
-  /* Render video cards ke dalam .testi-grid */
-  (function renderTestiVideos() {
+  /* Terjemahkan key i18n dengan fallback aman jika i18n.js belum siap */
+  function _t(key, fallback) {
+    if (window.i18n && typeof window.i18n.t === 'function') {
+      const val = window.i18n.t(key);
+      if (val) return val;
+    }
+    return fallback || key;
+  }
+
+  /* Render video cards ke dalam .testi-grid (dipanggil ulang saat bahasa berganti) */
+  function renderTestiVideos() {
     const grid = document.querySelector('.testi-grid');
     if (!grid) return;
     grid.innerHTML = '';
+    const thumbAltBase = _t('testi.thumbnailAlt', 'Pratinjau video');
+    const _subFallback = {
+      'testi.sub1': 'Layanan Manajemen Keuangan',
+      'testi.sub2': 'Layanan Pajak & Akuntansi',
+      'testi.sub3': 'Layanan Konsultasi Bisnis'
+    };
     TESTIMONI_VIDEOS.forEach((v, i) => {
-      const id = getYouTubeID(v.link);
-      const embedSrc = id ? `https://www.youtube.com/embed/${id}` : v.link;
-      const thumbSrc = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
+      const ytId = getYouTubeID(v.link);
+      const embedSrc = ytId ? `https://www.youtube.com/embed/${ytId}` : v.link;
+      const thumbSrc = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '';
       const num = String(i + 1).padStart(2, '0');
+      const titleText = _t(v.judul, 'Testimoni Klien');
+      const subText = _t(v.sub, _subFallback[v.sub] || '');
+
       const card = document.createElement('div');
       card.className = 'testi-card';
-      card.innerHTML = `
-        <div class="testi-embed" style="position:relative;" onclick="openVideoLB('${embedSrc}')">
-          ${thumbSrc
-            ? `<img src="${thumbSrc}" alt="Thumbnail ${num}" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">`
-            : `<iframe src="${embedSrc}" title="${v.judul} ${num}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>`
-          }
-          <div class="testi-play-overlay">
-            <div class="testi-play-btn">
-              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="testi-label">
-          <div class="testi-num">${num}</div>
-          <div><b>${v.judul}</b><span>${v.sub}</span></div>
-        </div>
-      `;
+
+      const embed = document.createElement('div');
+      embed.className = 'testi-embed';
+      embed.style.position = 'relative';
+      embed.addEventListener('click', () => openVideoLB(embedSrc));
+
+      if (thumbSrc) {
+        const img = document.createElement('img');
+        img.src = thumbSrc;
+        img.alt = `${thumbAltBase} ${num}`;
+        img.style.cssText = 'width:100%;aspect-ratio:16/9;object-fit:cover;display:block;';
+        embed.appendChild(img);
+      } else {
+        const iframe = document.createElement('iframe');
+        iframe.src = embedSrc;
+        iframe.title = `${titleText} ${num}`;
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        embed.appendChild(iframe);
+      }
+
+      const overlay = document.createElement('div');
+      overlay.className = 'testi-play-overlay';
+      const playBtn = document.createElement('div');
+      playBtn.className = 'testi-play-btn';
+      playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>';
+      overlay.appendChild(playBtn);
+      embed.appendChild(overlay);
+
+      const label = document.createElement('div');
+      label.className = 'testi-label';
+      const numEl = document.createElement('div');
+      numEl.className = 'testi-num';
+      numEl.textContent = num;
+      const textWrap = document.createElement('div');
+      const bEl = document.createElement('b');
+      bEl.textContent = titleText;
+      const spanEl = document.createElement('span');
+      spanEl.textContent = subText;
+      textWrap.appendChild(bEl);
+      textWrap.appendChild(spanEl);
+      label.appendChild(numEl);
+      label.appendChild(textWrap);
+
+      card.appendChild(embed);
+      card.appendChild(label);
       grid.appendChild(card);
     });
-  })();
+  }
+  renderTestiVideos();
+  document.addEventListener('pristine:langchange', renderTestiVideos);
 
   /* Video Lightbox */
   function openVideoLB(src) {
