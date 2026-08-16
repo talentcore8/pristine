@@ -6,7 +6,6 @@
   <title>Pristine Accounting | Jasa Akuntansi, Pajak & Konsultasi Bisnis</title>
   <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png">
   <link rel="apple-touch-icon" href="https://res.cloudinary.com/dsl0n8dxb/image/upload/f_auto,q_auto/v1780409578/logo-header_hew3ez.png">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- ═══ GOOGLE SEARCH CONSOLE ═══ -->
   <meta name="google-site-verification" content="O7Oi7H-ffjspS_ISR5aF3qp2y2xAtLVjwd8fHdMFLqY" />
@@ -2326,17 +2325,6 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeVideoLB();
   });
-
-  /* ── Netlify Identity redirect ── */
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', user => {
-      if (!user) {
-        window.netlifyIdentity.on('login', () => {
-          document.location.href = '/admin/';
-        });
-      }
-    });
-  }
 
   /* ── Certificate Lightbox + Zoom ── */
   const _cz = { scale: 1, x: 0, y: 0, dragging: false, sx: 0, sy: 0 };
