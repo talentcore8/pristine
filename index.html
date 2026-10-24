@@ -2286,41 +2286,27 @@
   <script src="js/i18n.js"></script>
   <script>
   /* ╔══════════════════════════════════════════════════════╗
-     ║   GANTI LINK VIDEO YOUTUBE DI SINI                  ║
-     ║   Paste link YouTube biasa, otomatis jadi embed      ║
-     ║   Contoh: https://www.youtube.com/watch?v=abc123     ║
-     ║        atau https://youtu.be/abc123                  ║
+     ║   GANTI VIDEO ID YOUTUBE DI SINI                    ║
+     ║   Perbarui ID Indonesia dan Inggris per kartu.       ║
      ╚══════════════════════════════════════════════════════╝ */
   const TESTIMONI_VIDEOS = [
     {
-      link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 1
-      judul: 'testi.title',
-      sub:   'testi.sub1'
+      videoIds: { id: '_f5VUX3BQoA', en: 'XBLllIbw53o' },
+      titleKey: 'testi.card1Title',
+      subtitleKey: 'testi.card1Subtitle'
     },
     {
-      link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 2
-      judul: 'testi.title',
-      sub:   'testi.sub2'
+      videoIds: { id: '90GCq-LWgJo', en: 'Xca3gSUJpsU' },
+      titleKey: 'testi.card2Title',
+      subtitleKey: 'testi.card2Subtitle'
     },
     {
-      link:  'https://youtu.be/_e4kcfh-7vo', // ← GANTI LINK VIDEO 3
-      judul: 'testi.title',
-      sub:   'testi.sub3'
+      videoIds: { id: '-jBw9B7sL3s', en: 'qnQLbNcEz2Y' },
+      titleKey: 'testi.card3Title',
+      subtitleKey: 'testi.card3Subtitle'
     },
   ];
-  /* judul & sub di atas adalah i18n key (lihat js/i18n.js) — hanya "link" yang perlu diganti untuk mengganti video */
-
-  /* Ekstrak YouTube ID dari berbagai format link */
-  function getYouTubeID(url) {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{11})/
-    ];
-    for (const p of patterns) {
-      const m = url.match(p);
-      if (m) return m[1];
-    }
-    return null;
-  }
+  /* Keep video IDs and translated card copy together for easy future updates. */
 
   /* Terjemahkan key i18n dengan fallback aman jika i18n.js belum siap */
   function _t(key, fallback) {
@@ -2337,18 +2323,16 @@
     if (!grid) return;
     grid.innerHTML = '';
     const thumbAltBase = _t('testi.thumbnailAlt', 'Pratinjau video');
-    const _subFallback = {
-      'testi.sub1': 'Layanan Manajemen Keuangan',
-      'testi.sub2': 'Layanan Pajak & Akuntansi',
-      'testi.sub3': 'Layanan Konsultasi Bisnis'
-    };
+    const activeLang = window.i18n && typeof window.i18n.getLanguage === 'function'
+      ? window.i18n.getLanguage()
+      : 'id';
     TESTIMONI_VIDEOS.forEach((v, i) => {
-      const ytId = getYouTubeID(v.link);
-      const embedSrc = ytId ? `https://www.youtube.com/embed/${ytId}` : v.link;
-      const thumbSrc = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '';
+      const videoId = v.videoIds[activeLang] || v.videoIds.id;
+      const embedSrc = `https://www.youtube-nocookie.com/embed/${videoId}`;
+      const thumbSrc = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
       const num = String(i + 1).padStart(2, '0');
-      const titleText = _t(v.judul, 'Testimoni Klien');
-      const subText = _t(v.sub, _subFallback[v.sub] || '');
+      const titleText = _t(v.titleKey, 'Client Testimonial');
+      const subText = _t(v.subtitleKey, '');
 
       const card = document.createElement('div');
       card.className = 'testi-card';
@@ -2363,6 +2347,11 @@
         img.src = thumbSrc;
         img.alt = `${thumbAltBase} ${num}`;
         img.style.cssText = 'width:100%;aspect-ratio:16/9;object-fit:cover;display:block;';
+        img.addEventListener('error', () => {
+          if (img.dataset.thumbnailFallback) return;
+          img.dataset.thumbnailFallback = 'true';
+          img.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        });
         embed.appendChild(img);
       } else {
         const iframe = document.createElement('iframe');
@@ -2404,7 +2393,10 @@
     });
   }
   renderTestiVideos();
-  document.addEventListener('pristine:langchange', renderTestiVideos);
+  document.addEventListener('pristine:langchange', () => {
+    closeVideoLB();
+    renderTestiVideos();
+  });
 
   /* Video Lightbox */
   function openVideoLB(src) {
