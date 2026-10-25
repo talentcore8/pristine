@@ -118,7 +118,7 @@
       'testi.card2Title': 'Bu Monica',
       'testi.card2Subtitle': 'PT Berkat Skala Sejahtera',
       'testi.card3Title': 'Bu Rina',
-      'testi.card3Subtitle': 'PT Laju Makmur Logistik',
+      'testi.card3Subtitle': 'PT Laju Makmur Lestari',
       'testi.thumbnailAlt': 'Pratinjau video',
 
       'contact.kicker': 'Kontak',
@@ -244,7 +244,7 @@
       'testi.card2Title': 'Monica',
       'testi.card2Subtitle': 'PT Berkat Skala Sejahtera',
       'testi.card3Title': 'Rina',
-      'testi.card3Subtitle': 'PT Laju Makmur Logistik',
+      'testi.card3Subtitle': 'PT Laju Makmur Lestari',
       'testi.thumbnailAlt': 'Thumbnail',
 
       'contact.kicker': 'Contact',
